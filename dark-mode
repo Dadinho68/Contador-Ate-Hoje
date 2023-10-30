@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contador de Vida</title>
+<style>
+    @font-face {
+        font-family:"pixel" ;
+        src: url("Pixelary.otf");
+    }
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+p {
+  font-family: 'pixel';
+  text-align: center;
+  font-size: 60px;
+  margin: 0;
+  text-shadow: 2px 2px 4px #afafaf;
+}
+  /* Modo escuro */
+  .dark-mode {
+        background-color: #000000;
+        color: #ffffff;
+    }
+
+    p.dark-mode {
+        font-family: 'pixel';
+        text-align: center;
+        font-size: 60px;
+        margin: 0;
+        text-shadow: 2px 2px 4px #ffffff;
+    }
+
+    /* Botão para alternar o modo escuro */
+    #dark-mode-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 10px;
+        background-color: #000000;
+        color: #ffffff;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body class="dark-mode">
+
+<p id="demo"></p>
+
+<button id="dark-mode-button">Dark mode</button>
+
+<script>
+// Seta aqui a sua data de nacimento
+var countDownDate = new Date("Dec 19, 2001 07:35:00").getTime();
+
+// Atualiza a cada segundo
+var x = setInterval(function() {
+
+  // Pega a data e hora de hoje
+  var now = new Date().getTime();
+    
+  // E basicamente a subtracao de hoje e sua data de nascimento
+  var distance = now - countDownDate;
+    
+  // Calculo dos Anos, Meses, Dias, Horas e Segundos vividos.
+  var years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
+  var months = Math.floor((distance % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Atualiza a saida do resultado no elemento com id="demo"
+  document.getElementById("demo").innerHTML = years + "a " + months + "m " + days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+  // Dark mode 
+const darkModeButton = document.getElementById('dark-mode-button');
+
+darkModeButton.onclick = () => {
+  document.body.classList.toggle('dark-mode');
+};
+</script>
+
+</body>
+</html>
